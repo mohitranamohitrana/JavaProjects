@@ -1,0 +1,53 @@
+PROJ 3 Pseudo
+
+Quadrant 1
+
+Create character array “ip“ and input the ip address
+Create character array “message” containing “Please”
+Create character array “password”
+
+Connect to server with using ip and port 1024
+If connected print “Connected”
+If not connected print “Connection failed”
+Send “message” array to server
+Receive the password from the server into “password” array
+Send “password” array to the server to open the gate.
+
+Wait for 1 second
+Set motors to move forwards
+
+Quadrant 2 
+
+Create a list
+For each pixel across picture
+	Get intensity of pixel from middle row
+	If the intensity is lower than the black threshold
+		Add 1 to the list
+	Otherwise add 0 to the list
+Create variable total and make it 0
+For the size of the list
+To the total, add each list item multiplied by (the index of the item minus half the list size)
+If the value is higher than the total threshold
+	Turn left
+If the value is lower than the negative of the total threshold
+	Turn right
+Otherwise
+Move forwards
+
+Scan the rows of pixels along the horizontal
+Make a vector 
+Push back the row number minus the total rows divided by 2 to get the centre as 0 
+Scan the column until end of column 
+Find the black threshold 
+Make another vector to count the black pixels as 1 
+Get blackpixel at  each row and column 
+If the blackpixel found is lesser than or equal to black threshold 
+Push back 1 into the vector 
+If it is not then push back 0
+Get the scalar multiple of both vector 
+If it is a negative number then turn right
+If it is a positive number then turn left
+
+Quadrant 3
+
+Quadrant 4
