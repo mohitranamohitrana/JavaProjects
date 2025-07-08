@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Color Picker</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            transition: background 0.5s;
+        }
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 2px solid #000;
+        }
+        .slider-container {
+            margin: 10px;
+        }
+        input[type="range"] {
+            width: 80%;
+        }
+        input[type="number"] {
+            width: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>RGB Color Picker</h1>
+    <div id="colorBox"></div>
+
+    <div class="slider-container">
+        <label>Red: </label>
+        <input type="range" id="red" min="0" max="255" value="255" oninput="updateColor()">
+        <input type="number" id="redInput" min="0" max="255" value="255" oninput="syncSlider('red')">
+    </div>
+
+    <div class="slider-container">
+        <label>Green: </label>
+        <input type="range" id="green" min="0" max="255" value="255" oninput="updateColor()">
+        <input type="number" id="greenInput" min="0" max="255" value="255" oninput="syncSlider('green')">
+    </div>
+
+    <div class="slider-container">
+        <label>Blue: </label>
+        <input type="range" id="blue" min="0" max="255" value="255" oninput="updateColor()">
+        <input type="number" id="blueInput" min="0" max="255" value="255" oninput="syncSlider('blue')">
+    </div>
+
+    <p id="rgbValue">RGB(255, 255, 255)</p>
+
+    <script>
+        function updateColor() {
+            let r = document.getElementById("red").value;
+            let g = document.getElementById("green").value;
+            let b = document.getElementById("blue").value;
+            let rgbColor = `rgb(${r}, ${g}, ${b})`;
+
+            document.getElementById("colorBox").style.background = rgbColor;
+            document.getElementById("rgbValue").innerText = rgbColor;
+
+            // Sync number inputs with sliders
+            document.getElementById("redInput").value = r;
+            document.getElementById("greenInput").value = g;
+            document.getElementById("blueInput").value = b;
+        }
+
+        function syncSlider(color) {
+            let value = document.getElementById(color + "Input").value;
+            if (value < 0) value = 0;
+            if (value > 255) value = 255;
+            document.getElementById(color).value = value;
+            updateColor();
+        }
+
+        updateColor(); // Initialize color
+    </script>
+
+</body>
+</html>
